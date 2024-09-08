@@ -8,13 +8,10 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.springframework.web.multipart.MultipartFile;
 
-@Entity
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
 public class InvoiceCreateModel {
-    @Id
-    @GeneratedValue
     private Long id;
     private String name;
     private String location;
