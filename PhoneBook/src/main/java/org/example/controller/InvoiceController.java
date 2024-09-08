@@ -1,8 +1,9 @@
 package org.example.controller;
 
 import org.example.exception.InvoiceNotFoundException;
-import org.example.model.Invoice;
-import org.example.service.IInvoiceService;
+import org.example.entities.Invoice;
+import org.example.models.InvoiceCreateModel;
+import org.example.service.InvoiceService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -16,8 +17,7 @@ import java.util.List;
 public class InvoiceController {
 
     @Autowired
-    private IInvoiceService service;
-
+    private InvoiceService service;
 
     @GetMapping("/register")
     public String showRegistration() {
@@ -26,15 +26,10 @@ public class InvoiceController {
 
     @PostMapping("/save")
     public String saveInvoice(
-            @ModelAttribute Invoice invoice,
-            //  Model model,
+            @ModelAttribute InvoiceCreateModel model,
             RedirectAttributes attributes
     ) {
-        service.saveInvice(invoice);
-        Long id = service.saveInvice(invoice).getId();
-        //String message = "Record with id : '"+id+"' is saved successfully !";
-//        model.addAttribute("message", message);
-//        return "registerInvoicePage";
+        Long id = service.saveInvoice(model).getId();
 
         attributes.addAttribute("message", "Record with id : '"+id+"' is saved successfully !");
         return "redirect:getAllInvoices";

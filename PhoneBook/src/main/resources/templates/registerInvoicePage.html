@@ -16,7 +16,7 @@
                 <h3>Register Invoices</h3>
             </div>
             <div class="card-body">
-                <form th:action="@{/invoice/save}" method="POST" id="invoiceForm" enctype="multipart/form-data">
+                <form th:action="@{/invoice/save}" method="POST" id="invoiceForm">
                     <div class="row">
                         <div class="col-2">
                             <label for="name"><b>NAME</b></label>
@@ -41,15 +41,6 @@
                         </div>
                         <div class="col-4">
                             <input type="text" name="amount" id="amount"
-                                   class="form-control" />
-                        </div>
-                    </div> <br/>
-                    <div class="row">
-                        <div class="col-2">
-                            <label for="file"><b>UPLOAD FILE</b></label>
-                        </div>
-                        <div class="col-4">
-                            <input type="file" name="file" id="file"
                                    class="form-control" />
                         </div>
                     </div> <br/>
