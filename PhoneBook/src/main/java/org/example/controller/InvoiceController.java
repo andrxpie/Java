@@ -3,6 +3,7 @@ package org.example.controller;
 import org.example.exception.InvoiceNotFoundException;
 import org.example.entities.Invoice;
 import org.example.models.InvoiceCreateModel;
+import org.example.models.InvoiceItemModel;
 import org.example.service.InvoiceService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -40,7 +41,7 @@ public class InvoiceController {
             @RequestParam(value = "message", required = false) String message,
             Model model
     ) {
-        List<Invoice> invoices = service.getAllInvoices();
+        var invoices = service.getAllInvoices();
         model.addAttribute("list", invoices);
         model.addAttribute("message", message);
         return "allInvoicesPage";

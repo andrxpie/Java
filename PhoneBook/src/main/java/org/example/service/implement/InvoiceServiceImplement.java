@@ -2,7 +2,9 @@ package org.example.service.implement;
 
 import org.example.exception.InvoiceNotFoundException;
 import org.example.entities.Invoice;
+import org.example.mapper.InvoiceMapper;
 import org.example.models.InvoiceCreateModel;
+import org.example.models.InvoiceItemModel;
 import org.example.repo.InvoiceRepository;
 import org.example.service.InvoiceService;
 import org.example.storage.StorageService;
@@ -19,6 +21,8 @@ public class InvoiceServiceImplement implements InvoiceService {
     private InvoiceRepository repo;
     @Autowired
     private StorageService storageService;
+    @Autowired
+    private InvoiceMapper invoiceMapper;
 
     @Override
     public Invoice saveInvoice(InvoiceCreateModel model) {
@@ -36,8 +40,8 @@ public class InvoiceServiceImplement implements InvoiceService {
     }
 
     @Override
-    public List<Invoice> getAllInvoices() {
-        return repo.findAll();
+    public List<InvoiceItemModel> getAllInvoices() {
+        return invoiceMapper.MapInvoices(repo.findAll());
     }
 
     @Override
