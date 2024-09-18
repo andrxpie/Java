@@ -1,4 +1,4 @@
-package org.example.services;
+package org.example.interfaces;
 
 import org.example.DTOs.InvoiceDto;
 import org.example.DTOs.InvoiceCreateDto;

@@ -14,7 +14,7 @@ import org.springframework.stereotype.Component;
     comments = "version: 1.6.0, compiler: javac, environment: Java 22.0.2 (Oracle Corporation)"
 )
 @Component
-public class CategoryMapperImpl implements CategoryMapper {
+public class ICategoryMapperImpl implements ICategoryMapper {
 
     @Override
     public Category fromCreationModel(CategoryCreateDto categoryModel) {

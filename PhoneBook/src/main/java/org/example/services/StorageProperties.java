@@ -1,4 +1,4 @@
-package org.example.storage;
+package org.example.services;
 
 import lombok.Data;
 import org.springframework.boot.context.properties.ConfigurationProperties;

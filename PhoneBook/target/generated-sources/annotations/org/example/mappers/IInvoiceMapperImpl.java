@@ -13,7 +13,7 @@ import org.springframework.stereotype.Component;
     comments = "version: 1.6.0, compiler: javac, environment: Java 22.0.2 (Oracle Corporation)"
 )
 @Component
-public class InvoiceMapperImpl implements InvoiceMapper {
+public class IInvoiceMapperImpl implements IInvoiceMapper {
 
     @Override
     public Invoice fromCreateDto(InvoiceCreateDto model) {

@@ -1,12 +1,12 @@
-package org.example.services.implementations;
+package org.example.services;
 
 import org.example.DTOs.InvoiceDto;
 import org.example.entities.Invoice;
 import org.example.exceptions.InvoiceNotFoundException;
-import org.example.services.IInvoiceService;
-import org.example.storage.IStorageService;
-import org.example.repositories.InvoiceRepository;
-import org.example.mappers.InvoiceMapper;
+import org.example.interfaces.IInvoiceService;
+import org.example.interfaces.IStorageService;
+import org.example.interfaces.InvoiceRepository;
+import org.example.mappers.IInvoiceMapper;
 import org.example.DTOs.InvoiceCreateDto;
 import org.example.DTOs.PaginationResponse;
 import org.springframework.data.domain.Page;
@@ -23,7 +23,7 @@ public class InvoiceService implements IInvoiceService {
     @Autowired
     private IStorageService storageService;
     @Autowired
-    private InvoiceMapper mapper;
+    private IInvoiceMapper mapper;
 
     @Override
     public Long saveInvoice(InvoiceCreateDto invoiceModel) {

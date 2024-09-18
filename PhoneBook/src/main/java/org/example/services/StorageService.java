@@ -1,11 +1,10 @@
-package org.example.storage.implementations;
+package org.example.services;
 
 import net.coobird.thumbnailator.Thumbnails;
 import org.example.exceptions.StorageException;
 import org.apache.commons.io.FilenameUtils;
-import org.example.storage.IStorageService;
+import org.example.interfaces.IStorageService;
 import org.example.DTOs.FileFormats;
-import org.example.storage.StorageProperties;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 import javax.imageio.ImageIO;

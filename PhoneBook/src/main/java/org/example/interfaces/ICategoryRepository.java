@@ -1,4 +1,4 @@
-package org.example.repositories;
+package org.example.interfaces;
 import org.example.entities.Category;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;

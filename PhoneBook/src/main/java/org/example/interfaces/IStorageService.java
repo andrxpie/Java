@@ -1,11 +1,10 @@
-package org.example.storage;
+package org.example.interfaces;
 
 import org.example.DTOs.FileFormats;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.awt.image.BufferedImage;
 import java.io.IOException;
-import java.util.concurrent.CompletableFuture;
 
 public interface IStorageService {
     void init() throws IOException;

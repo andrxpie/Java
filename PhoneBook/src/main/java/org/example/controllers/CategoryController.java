@@ -3,7 +3,7 @@ package org.example.controllers;
 import jakarta.validation.Valid;
 import org.example.DTOs.CategoryDto;
 import org.example.exceptions.InvoiceNotFoundException;
-import org.example.services.ICategoryService;
+import org.example.interfaces.ICategoryService;
 import org.example.DTOs.CategoryCreateDto;
 import org.example.DTOs.PaginationResponse;
 import org.springframework.beans.factory.annotation.Autowired;

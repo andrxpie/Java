@@ -1,7 +1,7 @@
 package org.example;
 
-import org.example.storage.StorageProperties;
-import org.example.storage.IStorageService;
+import org.example.services.StorageProperties;
+import org.example.interfaces.IStorageService;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

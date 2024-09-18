@@ -1,12 +1,12 @@
-package org.example.services.implementations;
+package org.example.services;
 
 import org.example.DTOs.CategoryDto;
 import org.example.entities.Category;
 import org.example.exceptions.CategoryException;
-import org.example.repositories.ICategoryRepository;
-import org.example.services.ICategoryService;
-import org.example.storage.IStorageService;
-import org.example.mappers.CategoryMapper;
+import org.example.interfaces.ICategoryRepository;
+import org.example.interfaces.ICategoryService;
+import org.example.interfaces.IStorageService;
+import org.example.mappers.ICategoryMapper;
 import org.example.DTOs.FileFormats;
 import org.example.DTOs.CategoryCreateDto;
 import org.example.DTOs.PaginationResponse;
@@ -26,7 +26,7 @@ public class CategoryService implements ICategoryService {
     @Autowired
     private IStorageService storageService;
     @Autowired(required=true)
-    private CategoryMapper mapper;
+    private ICategoryMapper mapper;
 
     @Override
     public Long saveCategory(CategoryCreateDto categoryModel) {

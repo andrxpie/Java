@@ -1,4 +1,4 @@
-package org.example.repositories;
+package org.example.interfaces;
 
 import org.example.entities.Invoice;
 import org.springframework.data.jpa.repository.JpaRepository;

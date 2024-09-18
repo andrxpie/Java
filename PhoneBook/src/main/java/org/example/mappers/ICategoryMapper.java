@@ -9,7 +9,7 @@ import org.mapstruct.Mapping;
 import java.util.List;
 
 @Mapper(componentModel = "spring")
-public interface CategoryMapper {
+public interface ICategoryMapper {
     @Mapping(target = "image", ignore = true)
     Category fromCreationModel(CategoryCreateDto categoryModel);
     CategoryDto toDto(Category category);
