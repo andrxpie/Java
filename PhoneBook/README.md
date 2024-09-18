@@ -12,7 +12,7 @@ docker build -t phonebook-java .
 docker images --all
 docker run -it --rm -p 5085:8090 --name phonebook_container phonebook-java
 docker run -d --restart=always --name phonebook_container -p 5085:8090 phonebook-java
-docker run -d --restart=always -v d:/volumes/spring/uploading:/app/uploading --name phonebook_container -p 5085:8090 phonebook-java
+docker run -d --restart=always -v с:/volumes/spring/uploading:/app/uploading --name phonebook_container -p 5085:8090 phonebook-java
 docker run -d --restart=always -v /volumes/spring/uploading:/app/uploading --name phonebook_container -p 5085:8090 phonebook-java
 docker ps -a
 docker stop phonebook_container

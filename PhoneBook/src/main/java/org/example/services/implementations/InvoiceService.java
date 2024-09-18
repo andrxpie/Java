@@ -1,13 +1,12 @@
-package org.example.service.implement;
+package org.example.services.implementations;
 
-import org.example.exception.InvoiceNotFoundException;
+import org.example.DTOs.InvoiceItemDto;
+import org.example.exceptions.InvoiceNotFoundException;
 import org.example.entities.Invoice;
-import org.example.mapper.InvoiceMapper;
-import org.example.models.InvoiceCreateModel;
-import org.example.models.InvoiceItemModel;
-import org.example.repo.InvoiceRepository;
-import org.example.service.InvoiceService;
-import org.example.storage.StorageService;
+import org.example.mappers.InvoiceMapper;
+import org.example.DTOs.InvoiceCreateDto;
+import org.example.repositories.InvoiceRepository;
+import org.example.storage.IStorageService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -15,23 +14,23 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
-public class InvoiceServiceImplement implements InvoiceService {
+public class InvoiceService implements org.example.services.IInvoiceService {
 
     @Autowired
     private InvoiceRepository repo;
     @Autowired
-    private StorageService storageService;
+    private IStorageService IStorageService;
     @Autowired
     private InvoiceMapper invoiceMapper;
 
     @Override
-    public Invoice saveInvoice(InvoiceCreateModel model) {
+    public Invoice saveInvoice(InvoiceCreateDto model) {
         try{
             Invoice invoice = new Invoice();
             invoice.setName(model.getName());
             invoice.setAmount(model.getAmount());
             invoice.setLocation(model.getLocation());
-            var imageName = storageService.saveImage(model.getImage());
+            var imageName = IStorageService.saveFile(model.getImage());
             invoice.setImage(imageName);
             return repo.save(invoice);
         } catch (Exception e) {
@@ -40,7 +39,7 @@ public class InvoiceServiceImplement implements InvoiceService {
     }
 
     @Override
-    public List<InvoiceItemModel> getAllInvoices() {
+    public List<InvoiceItemDto> getAllInvoices() {
         return invoiceMapper.MapInvoices(repo.findAll());
     }
 

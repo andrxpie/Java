@@ -1,7 +1,7 @@
-package org.example.mapper;
+package org.example.mappers;
 
+import org.example.DTOs.InvoiceItemDto;
 import org.example.entities.Invoice;
-import org.example.models.InvoiceItemModel;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.Named;
@@ -12,8 +12,8 @@ import java.util.List;
 public interface InvoiceMapper {
 
     @Mapping(source = "image", target = "image", qualifiedByName = "pathToFile")
-    InvoiceItemModel MapInvoice(Invoice invoice);
-    List<InvoiceItemModel> MapInvoices(List<Invoice> invoices);
+    InvoiceItemDto MapInvoice(Invoice invoice);
+    List<InvoiceItemDto> MapInvoices(List<Invoice> invoices);
 
     @Named("pathToFile")
     public static String pathToFile(String image) {

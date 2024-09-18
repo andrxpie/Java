@@ -1,7 +1,7 @@
 package org.example;
 
 import org.example.storage.StorageProperties;
-import org.example.storage.StorageService;
+import org.example.storage.IStorageService;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -16,9 +16,9 @@ public class Main {
     }
 
     @Bean
-    CommandLineRunner runner(StorageService storageService) {
+    CommandLineRunner runner(IStorageService IStorageService) {
         return args -> {
-            storageService.init();
+            IStorageService.init();
         };
     }
 }

@@ -1,24 +1,21 @@
-package org.example.controller;
+package org.example.controllers;
 
-import org.example.exception.InvoiceNotFoundException;
+import org.example.exceptions.InvoiceNotFoundException;
 import org.example.entities.Invoice;
-import org.example.models.InvoiceCreateModel;
-import org.example.models.InvoiceItemModel;
-import org.example.service.InvoiceService;
+import org.example.DTOs.InvoiceCreateDto;
+import org.example.services.IInvoiceService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import java.util.List;
-
 @Controller
 @RequestMapping("/invoice")
 public class InvoiceController {
 
     @Autowired
-    private InvoiceService service;
+    private IInvoiceService service;
 
     @GetMapping("/register")
     public String showRegistration() {
@@ -27,7 +24,7 @@ public class InvoiceController {
 
     @PostMapping("/save")
     public String saveInvoice(
-            @ModelAttribute InvoiceCreateModel model,
+            @ModelAttribute InvoiceCreateDto model,
             RedirectAttributes attributes
     ) {
         Long id = service.saveInvoice(model).getId();

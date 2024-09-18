@@ -1,9 +1,9 @@
-package org.example.models;
+package org.example.DTOs;
 
 import lombok.Data;
 
 @Data
-public class InvoiceItemModel {
+public class InvoiceItemDto {
     private Long id;
     private String name;
     private String location;

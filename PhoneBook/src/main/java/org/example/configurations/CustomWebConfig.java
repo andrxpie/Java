@@ -1,4 +1,4 @@
-package org.example.configuration;
+package org.example.configurations;
 
 import lombok.AllArgsConstructor;
 import org.example.storage.StorageProperties;
