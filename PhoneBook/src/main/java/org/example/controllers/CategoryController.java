@@ -1,11 +1,11 @@
 package org.example.controllers;
 
 import jakarta.validation.Valid;
-import org.example.DTOs.CategoryCreateDto;
 import org.example.DTOs.CategoryDto;
 import org.example.exceptions.InvoiceNotFoundException;
+import org.example.services.ICategoryService;
+import org.example.DTOs.CategoryCreateDto;
 import org.example.DTOs.PaginationResponse;
-import org.example.services.implementations.CategoryService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -18,10 +18,10 @@ import java.io.IOException;
 @RequestMapping(value = "api/category",produces = "application/json")
 public class CategoryController {
     @Autowired
-    private CategoryService categoryService;
+    private ICategoryService categoryService;
 
     @PostMapping(value = "/create", consumes = "multipart/form-data")
-    public ResponseEntity<String> saveCategory(@ModelAttribute CategoryCreateDto categoryModel) {
+    public ResponseEntity<String> saveCategory( @ModelAttribute CategoryCreateDto categoryModel) {
         try {
             Long id  = categoryService.saveCategory(categoryModel);
             return ResponseEntity.ok().body(id.toString());
@@ -47,14 +47,11 @@ public class CategoryController {
 
     @PutMapping(value = "/update",consumes = "multipart/form-data")
     public ResponseEntity<String> updateInvoice( @Valid @ModelAttribute CategoryCreateDto categoryModel ,BindingResult bindingResult) {
-        if (bindingResult.hasErrors()) {
-            return ResponseEntity.badRequest().body(bindingResult.getAllErrors().toString());
-        } try {
+        if (bindingResult.hasErrors()) { return ResponseEntity.badRequest().body(bindingResult.getAllErrors().toString()); }
+        try {
             return categoryService.updateCategory(categoryModel) ? ResponseEntity.ok().body(categoryModel.getId().toString())
                     : ResponseEntity.badRequest().body("Invalid invoice id");
-        } catch (Exception e) {
-            return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
-        }
+        } catch (Exception e) { return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR); }
     }
 
     @DeleteMapping("/delete/{id}")

@@ -10,7 +10,7 @@ import java.time.LocalDateTime;
 @Table(name="tbl_categories")
 public class Category {
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private Long id;
 
     @Column(length = 200, nullable = false)
     private String name;

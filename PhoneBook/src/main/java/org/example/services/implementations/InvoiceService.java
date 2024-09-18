@@ -1,65 +1,77 @@
 package org.example.services.implementations;
 
-import org.example.DTOs.InvoiceItemDto;
-import org.example.exceptions.InvoiceNotFoundException;
+import org.example.DTOs.InvoiceDto;
 import org.example.entities.Invoice;
+import org.example.exceptions.InvoiceNotFoundException;
+import org.example.services.IInvoiceService;
+import org.example.storage.IStorageService;
+import org.example.repositories.InvoiceRepository;
 import org.example.mappers.InvoiceMapper;
 import org.example.DTOs.InvoiceCreateDto;
-import org.example.repositories.InvoiceRepository;
-import org.example.storage.IStorageService;
-import org.springframework.beans.factory.annotation.Autowired;
+import org.example.DTOs.PaginationResponse;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
-
-import java.util.List;
+import org.springframework.beans.factory.annotation.Autowired;
 import java.util.Optional;
 
 @Service
-public class InvoiceService implements org.example.services.IInvoiceService {
-
+public class InvoiceService implements IInvoiceService {
     @Autowired
     private InvoiceRepository repo;
     @Autowired
-    private IStorageService IStorageService;
+    private IStorageService storageService;
     @Autowired
-    private InvoiceMapper invoiceMapper;
+    private InvoiceMapper mapper;
 
     @Override
-    public Invoice saveInvoice(InvoiceCreateDto model) {
-        try{
-            Invoice invoice = new Invoice();
-            invoice.setName(model.getName());
-            invoice.setAmount(model.getAmount());
-            invoice.setLocation(model.getLocation());
-            var imageName = IStorageService.saveFile(model.getImage());
-            invoice.setImage(imageName);
-            return repo.save(invoice);
-        } catch (Exception e) {
-            return null;
-        }
+    public Long saveInvoice(InvoiceCreateDto invoiceModel) {
+        try {
+            Invoice invoice = mapper.fromCreateDto(invoiceModel);
+            invoice.setFileName(storageService.saveFile(invoiceModel.getFile()));
+            Invoice savedInvoice = repo.save(invoice);
+            return savedInvoice.getId();
+        } catch (Exception e) { throw new RuntimeException("Invoice save error"); }
     }
 
     @Override
-    public List<InvoiceItemDto> getAllInvoices() {
-        return invoiceMapper.MapInvoices(repo.findAll());
+    public PaginationResponse<InvoiceDto> getInvoices(int page, int size) {
+        PageRequest pageRequest = PageRequest.of(
+                page, size, Sort.by("name").descending());
+        Page<Invoice> invoicesPage = repo.findAll(pageRequest);
+        Iterable<InvoiceDto> invoices = mapper.toDto(invoicesPage.getContent());
+        return  new PaginationResponse<InvoiceDto>(invoices,invoicesPage.getTotalElements());
     }
 
     @Override
-    public Invoice getInvoiceById(Long id) {
-        Optional<Invoice> opt = repo.findById(id);
-        if(opt.isPresent()) {
-            return opt.get();
-        } else {
-            throw new InvoiceNotFoundException("Invoice with Id : "+id+" Not Found");
-        }
+    public InvoiceDto getInvoiceById(Long id) {
+        Optional<Invoice> invoice = repo.findById(id);
+        if(invoice.isPresent()) { return mapper.toDto(invoice.get()); }
+        else { throw new InvoiceNotFoundException("Invalid invoice id"); }
     }
 
     @Override
-    public void deleteInvoiceById(Long id) {
-        repo.delete(getInvoiceById(id));
+    public boolean deleteInvoiceById(Long id) {
+        Optional<Invoice> optInvoice =  repo.findById(id);
+        boolean isPresent = optInvoice.isPresent();
+        if(isPresent) {
+            Invoice invoice = optInvoice.get();
+            repo.delete(invoice);
+            storageService.deleteFile(invoice.getFileName());
+        } return isPresent;
     }
 
     @Override
-    public void updateInvoice(Invoice invoice) {
-        repo.save(invoice);
+    public boolean updateInvoice(InvoiceCreateDto invoiceModel) {
+        Optional<Invoice> optInvoice = repo.findById(invoiceModel.getId());
+        boolean isPresent = optInvoice.isPresent();
+        if(isPresent) {
+            Invoice invoice = mapper.fromCreateDto(invoiceModel);
+            if(!invoiceModel.getFile().isEmpty() ){
+                storageService.deleteFile(optInvoice.get().getFileName());
+                invoice.setFileName(storageService.saveFile(invoiceModel.getFile()));
+            } repo.save(invoice);
+        } return isPresent;
     }
 }
