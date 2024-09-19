@@ -1,4 +1,4 @@
-package org.example.dtos;
+package org.example.models;
 
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
@@ -8,7 +8,7 @@ import lombok.Data;
 import org.springframework.web.multipart.MultipartFile;
 
 @Data
-public class InvoiceCreateDto  {
+public class InvoiceCreateDto {
 
     @NotNull(message = "ID cannot be null")
     private Long id;

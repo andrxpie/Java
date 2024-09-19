@@ -1,9 +1,9 @@
 package org.example.interfaces;
 
 import org.example.dtos.ProductDto;
-import org.example.dtos.PaginationResponse;
-import org.example.dtos.ProductCreateDto;
-import org.example.dtos.SearchData;
+import org.example.models.PaginationResponse;
+import org.example.models.ProductCreateDto;
+import org.example.models.SearchData;
 import org.springframework.stereotype.Service;
 import java.io.IOException;
 

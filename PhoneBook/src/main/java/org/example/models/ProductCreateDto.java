@@ -1,4 +1,5 @@
-package org.example.dtos;
+package org.example.models;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -9,7 +10,7 @@ import org.springframework.web.multipart.MultipartFile;
 @EqualsAndHashCode(callSuper = false)
 @NoArgsConstructor
 @AllArgsConstructor
-public class ProductCreateDto{
+public class ProductCreateDto {
     private Long id;
     private String name;
     private String description;

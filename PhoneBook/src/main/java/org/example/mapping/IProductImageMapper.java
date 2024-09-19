@@ -1,4 +1,4 @@
-package org.example.mappers;
+package org.example.mapping;
 
 import org.example.dtos.ProductImageDto;
 import org.example.entities.ProductImage;

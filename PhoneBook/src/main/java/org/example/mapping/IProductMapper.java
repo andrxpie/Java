@@ -1,8 +1,8 @@
-package org.example.mappers;
+package org.example.mapping;
 
 import org.example.dtos.ProductDto;
 import org.example.entities.Product;
-import org.example.dtos.ProductCreateDto;
+import org.example.models.ProductCreateDto;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import java.util.List;

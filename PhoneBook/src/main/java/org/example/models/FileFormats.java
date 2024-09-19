@@ -1,4 +1,4 @@
-package org.example.dtos;
+package org.example.models;
 
 public enum FileFormats {
     WEBP,
