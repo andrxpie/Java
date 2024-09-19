@@ -4,7 +4,7 @@ import net.coobird.thumbnailator.Thumbnails;
 import org.example.exceptions.StorageException;
 import org.apache.commons.io.FilenameUtils;
 import org.example.interfaces.IStorageService;
-import org.example.DTOs.FileFormats;
+import org.example.dtos.FileFormats;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 import javax.imageio.ImageIO;

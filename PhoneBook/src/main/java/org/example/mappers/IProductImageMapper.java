@@ -1,6 +1,6 @@
 package org.example.mappers;
 
-import org.example.DTOs.ProductImageDto;
+import org.example.dtos.ProductImageDto;
 import org.example.entities.ProductImage;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;

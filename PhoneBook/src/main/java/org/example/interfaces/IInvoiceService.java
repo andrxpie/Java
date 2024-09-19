@@ -1,8 +1,8 @@
 package org.example.interfaces;
 
-import org.example.DTOs.InvoiceDto;
-import org.example.DTOs.InvoiceCreateDto;
-import org.example.DTOs.PaginationResponse;
+import org.example.dtos.InvoiceDto;
+import org.example.dtos.InvoiceCreateDto;
+import org.example.dtos.PaginationResponse;
 
 public interface IInvoiceService {
     public Long saveInvoice(InvoiceCreateDto invoiceModel);

@@ -1,14 +1,14 @@
 package org.example.services;
 
-import org.example.DTOs.InvoiceDto;
+import org.example.dtos.InvoiceDto;
 import org.example.entities.Invoice;
 import org.example.exceptions.InvoiceNotFoundException;
 import org.example.interfaces.IInvoiceService;
 import org.example.interfaces.IStorageService;
 import org.example.interfaces.InvoiceRepository;
 import org.example.mappers.IInvoiceMapper;
-import org.example.DTOs.InvoiceCreateDto;
-import org.example.DTOs.PaginationResponse;
+import org.example.dtos.InvoiceCreateDto;
+import org.example.dtos.PaginationResponse;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;

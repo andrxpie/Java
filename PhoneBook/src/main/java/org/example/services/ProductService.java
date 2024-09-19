@@ -6,7 +6,7 @@ import org.example.entities.ProductImage;
 import org.example.exceptions.ProductException;
 import org.example.interfaces.*;
 import org.example.mappers.IProductMapper;
-import org.example.DTOs.*;
+import org.example.dtos.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;

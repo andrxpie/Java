@@ -1,8 +1,8 @@
 package org.example.mappers;
 
-import org.example.DTOs.CategoryDto;
+import org.example.dtos.CategoryDto;
 import org.example.entities.Category;
-import org.example.DTOs.CategoryCreateDto;
+import org.example.dtos.CategoryCreateDto;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 

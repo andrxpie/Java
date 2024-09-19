@@ -1,15 +1,15 @@
 package org.example.services;
 
-import org.example.DTOs.CategoryDto;
+import org.example.dtos.CategoryDto;
 import org.example.entities.Category;
 import org.example.exceptions.CategoryException;
 import org.example.interfaces.ICategoryRepository;
 import org.example.interfaces.ICategoryService;
 import org.example.interfaces.IStorageService;
 import org.example.mappers.ICategoryMapper;
-import org.example.DTOs.FileFormats;
-import org.example.DTOs.CategoryCreateDto;
-import org.example.DTOs.PaginationResponse;
+import org.example.dtos.FileFormats;
+import org.example.dtos.CategoryCreateDto;
+import org.example.dtos.PaginationResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;

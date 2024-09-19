@@ -1,8 +1,8 @@
 package org.example.interfaces;
 
-import org.example.DTOs.CategoryDto;
-import org.example.DTOs.CategoryCreateDto;
-import org.example.DTOs.PaginationResponse;
+import org.example.dtos.CategoryDto;
+import org.example.dtos.CategoryCreateDto;
+import org.example.dtos.PaginationResponse;
 import java.io.IOException;
 
 public interface ICategoryService {

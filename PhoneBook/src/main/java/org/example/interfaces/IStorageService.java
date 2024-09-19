@@ -1,6 +1,6 @@
 package org.example.interfaces;
 
-import org.example.DTOs.FileFormats;
+import org.example.dtos.FileFormats;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.awt.image.BufferedImage;

@@ -1,4 +1,4 @@
-package org.example.DTOs;
+package org.example.dtos;
 
 import lombok.Data;
 import org.springframework.web.multipart.MultipartFile;

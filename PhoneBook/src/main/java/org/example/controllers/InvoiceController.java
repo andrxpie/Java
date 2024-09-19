@@ -1,11 +1,11 @@
 package org.example.controllers;
 
 import jakarta.validation.Valid;
-import org.example.DTOs.InvoiceDto;
+import org.example.dtos.InvoiceDto;
 import org.example.exceptions.InvoiceNotFoundException;
 import org.example.interfaces.IInvoiceService;
-import org.example.DTOs.InvoiceCreateDto;
-import org.example.DTOs.PaginationResponse;
+import org.example.dtos.InvoiceCreateDto;
+import org.example.dtos.PaginationResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

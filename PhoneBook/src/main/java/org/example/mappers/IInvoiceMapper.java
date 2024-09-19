@@ -1,8 +1,8 @@
 package org.example.mappers;
 
-import org.example.DTOs.InvoiceDto;
+import org.example.dtos.InvoiceDto;
 import org.example.entities.Invoice;
-import org.example.DTOs.InvoiceCreateDto;
+import org.example.dtos.InvoiceCreateDto;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 
