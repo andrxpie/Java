@@ -1,6 +1,7 @@
 package org.example.services;
 
 import net.coobird.thumbnailator.Thumbnails;
+import org.example.configurations.StorageProperties;
 import org.example.exceptions.StorageException;
 import org.apache.commons.io.FilenameUtils;
 import org.example.interfaces.IStorageService;
