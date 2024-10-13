@@ -1,21 +1,26 @@
 import { Button, Divider, Image, message, Pagination, Space, Table, TableProps } from 'antd';
 import React, { useEffect, useState } from 'react'
 import { ICategory } from '../../../models/Category';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useNavigate, useSearchParams} from 'react-router-dom';
 import { paginatorConfig } from '../../../helpers/constants';
 import { categoryService } from '../../../services/categoryService';
 import { APP_ENV } from '../../../env';
+import { getQueryString } from '../../../helpers/common-methods';
+import { DeleteDialog } from '../../common-components/DeleteDialog';
+import { PagintionData } from '../../../models/PaginationData';
+import { DateTime } from '../../../helpers/DateTime';
 
 
 const imageFolder = `${APP_ENV.SERVER_HOST}${APP_ENV.IMAGES_FOLDER}`
-interface PagintionData {
-  page: number,
-  pageSize: number
-}
+
 const CategoryTable: React.FC = () => {
   const navigate = useNavigate();
   const [data, setData] = useState<ICategory[]>()
-  const [pagination, setPagination] = useState<PagintionData>({ page: 1, pageSize: paginatorConfig.pagination.defaultPageSize })
+  const [searchParams, setSearchParams] = useSearchParams('');
+  const [pagination, setPagination] = useState<PagintionData>({ 
+    page: Number(searchParams.get("page")) || paginatorConfig.pagination.defaultCurrent,
+    pageSize: Number(searchParams.get("pageSize")) || paginatorConfig.pagination.defaultPageSize,
+   })
   const [total, setTotal] = useState<number>(0)
   const mainElement = document.querySelector('main') as HTMLElement;
 
@@ -47,15 +52,18 @@ const CategoryTable: React.FC = () => {
       title: 'Date',
       key: 'date',
       dataIndex: 'creationTime',
-      render: (date: string) => <span> {date.slice(0, 10)}</span>
+      render: (date: string) => <div className='d-flex flex-column gap-2 text-center'> {new DateTime(date).ShortDate} {new DateTime(date).FullTime}</div>,
+      width:100
     },
     {
       title: 'Actions',
       key: 'action',
       render: (element: ICategory) =>
         <Space>
-          <Button onClick={() => deleteCategory(element.id)} danger type="primary">Delete</Button>
-          <Button onClick={() => navigate(`/create?id=${element.id}`)} type='primary'>Edit</Button>
+          <DeleteDialog title={"re you sure?"}
+                        description={`Delete "${element.name}" category?` }
+                        onSubmit ={() => deleteCategory(element.id)}  />
+          <Button onClick={() => navigate(`create?id=${element.id}`)} type='primary'>Edit</Button>
         </Space>
     },
   ];
@@ -65,7 +73,10 @@ const CategoryTable: React.FC = () => {
   }, [data])
 
   useEffect(() => {
-    (async () => { await getData() })()
+    (async () => {
+      setSearchParams(getQueryString(pagination))
+       await getData()
+       })()
   }, [pagination]);
 
   const getData = async () => {
@@ -98,7 +109,7 @@ const CategoryTable: React.FC = () => {
     <div className=' mx-auto w-75 '  >
       <div className='d-flex justify-content-between'>
         <h4 className='text-muted'>Category table</h4>
-        <Link to={'/create'}>
+        <Link to={'create'}>
           <Button type="primary">Create new category</Button>
         </Link>
       </div>
